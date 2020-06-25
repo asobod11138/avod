@@ -50,7 +50,7 @@ def get_model_config_from_file(config_path):
 
 
 def get_configs_from_pipeline_file(pipeline_config_path,
-                                   is_training):
+                                   is_training, output_dir):
     """Reads model configuration from a pipeline_pb2.NetworkPipelineConfig.
     Args:
         pipeline_config_path: A path directory to the network pipeline config
@@ -77,7 +77,8 @@ def get_configs_from_pipeline_file(pipeline_config_path,
     if config_file_name != checkpoint_name:
         raise ValueError('Config and checkpoint names must match.')
 
-    output_root_dir = avod.root_dir() + '/data/outputs/' + checkpoint_name
+    #output_root_dir = avod.root_dir() + '/data/outputs/' + checkpoint_name
+    output_root_dir = output_dir + "/" + checkpoint_name
 
     # Construct paths
     paths_config = model_config.paths_config
