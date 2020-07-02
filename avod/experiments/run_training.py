@@ -68,12 +68,19 @@ def main(_):
                         default=default_device,
                         help='CUDA device id')
 
+    parser.add_argument('--output_dir',
+                        type=str,
+                        help='out dir')
+
+
     args = parser.parse_args()
 
     # Parse pipeline config
+    output = args.output_dir
+    is_training=True
     model_config, train_config, _, dataset_config = \
         config_builder.get_configs_from_pipeline_file(
-            args.pipeline_config_path, is_training=True)
+            args.pipeline_config_path, is_training, output)
 
     # Overwrite data split
     dataset_config.data_split = args.data_split
